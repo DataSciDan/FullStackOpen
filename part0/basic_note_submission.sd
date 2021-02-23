@@ -1,0 +1,35 @@
+note over browser
+User enters and submits the
+content for a new note
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over server
+Server reformats the entry,
+creates a note with it,
+and writes that note
+to the database, data.json,
+removing the oldest note
+from the database
+end note
+
+server-->browser: HTML code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser
+Browser begins executing
+main.js and asks for data.json
+end note
+
+browser->server: HTTP GET data.json
+server-->browser: JSON data
+
+note over browser:
+Browser displays the content
+of each note in an unordered
+list on the page
+end note

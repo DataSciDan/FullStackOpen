@@ -1,0 +1,23 @@
+note over browser
+User submits content
+for a new note.
+end note
+
+note over browser
+spa.js creates a note with
+that content and adds it as
+an item on the list of notes
+on the page then sends the
+note to the server.
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/spa
+
+note over server
+Server writes note to
+note database and
+deletes oldest note
+from database
+end note
+
+server-->browser: "201 Created [{message: 'note created'}]"
