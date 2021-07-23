@@ -23,10 +23,7 @@ const entrySchema = new mongoose.Schema({
                 required: true,
                 minLength: 8
         },
-        date: {
-                type: Date,
-                required: true
-        }
+        date: Date
 });
 entrySchema.plugin(uniqueValidator);
 
