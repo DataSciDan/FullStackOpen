@@ -64,19 +64,6 @@ app.post('/api/persons', (request, response) => {
                 });
         }
 
-        
-        /*This isn't explicitly asked for in the assignment, but I wanted to make it so notes with content idential to notes already in the database aren't added.
-        This solution probably doesn't work because of asynchronicity.
-        And the problem is that we need that return keyword to cease the entire function, so we can't simply put that statement in then's handler.*/
-        /*
-        let numberOfEntries;
-        Entry.find({name}).then(entries => numberOfEntries = entries.length);
-        if (numberOfEntries) {
-                return response.status(400).json({
-                        error: `${name} is already in the phonebook`
-                });
-        }*/
-        
         const entry = new Entry({
                 name,
                 number,
@@ -89,15 +76,15 @@ app.post('/api/persons', (request, response) => {
 });
 
 app.put('/api/persons/:id', (request, response, next) => {
-        const {number} = request.body;
+        const { number } = request.body;
         const id = request.params.id;
-        Entry.findByIdAndUpdate(id, {number}, {new: true}).then(updatedEntry => {
+        Entry.findByIdAndUpdate(id, { number }, { new: true }).then(updatedEntry => {
                 response.json(updatedEntry);
         }).catch(error => next(error));
 });
 
 const unknownEndpoint = (request, response) => {
-        response.status(404).send({error: "404: resource doesn't exist"});
+        response.status(404).send({ error: "404: resource doesn't exist" });
 };
 app.use(unknownEndpoint);
 
@@ -105,7 +92,7 @@ const errorHandler = (error, request, response, next) => {
         console.error(error.message);
 
         if (error.name === 'CastError') {
-                return response.status(400).send({error: 'malformed id'});
+                return response.status(400).send({ error: 'malformed id' });
         }
 
         next(error);
