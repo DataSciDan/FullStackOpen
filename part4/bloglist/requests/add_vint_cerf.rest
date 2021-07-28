@@ -1,9 +1,0 @@
-POST http://localhost:3003/api/persons
-Content-Type: application/json
-
-{
-        "author": "Vint & Cerf",
-        "title": "Internet '69",
-        "url": "https://thewhole.world",
-        "likes": 420420
-}
